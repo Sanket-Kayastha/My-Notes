@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg,#005461, #25671E, #249E94);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #005461;
+        }
+
+        h2 {
+            margin: 20px 0 10px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        p {
+            margin: 20px 0 10px;
+            color: #555;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-link {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #0C7779;
+            color: white;
+        }
+
+        .btn-link:hover {
+            background-color: #005461;
+        }
+
+        .btn-links {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            background-color: #6a11cb;
+        }
+
+        .btn-links:hover {
+            background-color: #580fa8;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="url_for('home')"  method="post">
+        <h1>Welcome to Note App</h1>
+
+        <h2>New User</h2>
+        <a href="{{ url_for('create_account') }}" class="create-btn btn-link">Create Account</a>
+
+        <p>Already Registered?</p>
+        <a href="{{url_for('login')}}" class="create-btn btn-links">Login</a>
+        </form>
+    </div>
+</body>
+</html>

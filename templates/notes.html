@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: white;
+        }
+        span{
+            color: red;
+        }
+
+        /* NAVBAR */
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgb(0, 84, 97);
+        }
+
+        .logo{
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-left,
+        .nav-right{
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0px;
+        }
+
+        .nav-left li,
+        .nav-right li a{
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-left li:hover,
+        .nav-right li a:hover{
+            text-decoration: underline;
+        }
+
+        /* CONTENT */
+        .content{
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            padding: 0 15px;
+        }
+
+        .note{
+            width: 400px;
+        }
+
+        h1{
+            font-size: 24px;
+            color: rgb(0, 84, 97);
+        }
+        h2{
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: rgb(0, 84, 97);
+        }
+
+        ul{
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        ul li{
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: rgb(0, 84, 97);
+            cursor: pointer;
+        }
+
+        ul li:hover{
+            background: rgb(12, 119, 121);
+            color: white;
+        }
+
+        button{
+            padding: 10px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            background: rgb(12, 119, 121);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background: rgb(59, 193, 168);
+        }
+        .myNote {
+            justify-content: center;
+            align-items: center;
+            color: rgb(0, 84, 97);
+        }
+        
+        .myNote label{
+            font-size: medium;
+            font-weight: bold;
+            color:rgb(36, 158, 148) ;
+        }
+        .myNote input{
+            width: 100%;
+            font-size: 26px;
+            font-weight: 600;
+            border: none;
+            border-bottom: 2px solid #005461;
+            padding: 10px 0;
+            outline: none;
+        }
+        .myNote input:focus {
+            border-bottom-color: #3BC1A8;
+            }
+
+        /* 📱 RESPONSIVE */
+        @media (max-width: 768px) {
+
+            .navbar{
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px 20px;
+            }
+
+            .nav-left,
+            .nav-right{
+                gap: 15px;
+            }
+
+            .content{
+                margin-top: 25px;
+            }
+
+            .note{
+                width: 100%;
+            }
+
+            h1{
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .nav-left,
+            .nav-right{
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            ul{
+                padding-left: 15px;
+            }
+
+            button{
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .myNote input {
+                font-size: 22px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV BAR -->
+<form method="post">
+    <nav class="navbar">
+        <div class="logo">NotesApp</div>
+
+        <ul class="nav-left">
+            <li>Home</li>
+            <li href="#">Make Note</li>
+        </ul>
+
+        <ul class="nav-right">
+            <li><a href="{{url_for('login')}}">Login</a></li>
+            <li><a href="{{url_for('logout')}}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE CONTENT -->
+    <div class="content">
+        <div class="note">
+            <h1>Hello <span>{{user.username}}!</span></h1>
+            <h2>Your All Notes is Here 👇🏻</h2>
+
+            <ul>
+                {% for notes in note%}
+                <li><a href="{{url_for('shownote', id=notes.id)}}">{{notes.title}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="myNote">
+            <h1>Make Your Notes....📝 By your......💖</h1>
+            <label>Title: </label>
+            <input type="text" name="title" placeholder="Enter Title"><br><br>
+            {{ ckeditor.create(name='ckeditor') }}
+            <body>{{ ckeditor.load() }}</body><br>
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

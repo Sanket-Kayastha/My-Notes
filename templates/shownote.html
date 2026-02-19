@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read-Note</title>
+
+<style>
+    /* PAGE */
+    body {
+        background: url("{{ url_for('static', filename='note.webp') }}") center / cover no-repeat fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 40px 0;
+        min-height: 100vh;
+    }
+
+    /* CARD */
+    form {
+        background: #ffffff;
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        animation: fadeIn 0.6s ease-in-out;
+    }
+
+    /* TITLE */
+    h1 {
+        margin: 0;
+        font-size: 30px;
+        color: #333;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 12px;
+        word-wrap: break-word;
+    }
+
+    h2 {
+        margin-top: 30px;
+        color: #0C7779;
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    /* NOTE CONTENT */
+    .final-note {
+        margin-top: 20px;
+        padding: 25px;
+        background: #f7f8fc;
+        border-left: 6px solid #3BC1A8;
+        border-radius: 10px;
+        font-size: 17px;
+        line-height: 1.8;
+        color: #444;
+        font-family: "Times New Roman", Times, serif;
+        font-style: italic;
+        font-weight: 500;
+
+        /* IMPORTANT FOR HUGE CONTENT */
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    /* TEXT ELEMENTS FROM CKEDITOR */
+    .final-note p {
+        margin: 0 0 14px;
+    }
+
+    .final-note h1,
+    .final-note h2,
+    .final-note h3 {
+        margin-top: 20px;
+        color: #2c6e7b;
+    }
+
+    /* IMAGES INSIDE NOTES */
+    .final-note img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* LISTS */
+    .final-note ul,
+    .final-note ol {
+        margin: 15px 0 15px 30px;
+    }
+
+    /* TABLES */
+    .final-note table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        overflow-x: auto;
+        display: block;
+    }
+
+    .final-note th,
+    .final-note td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    /* FADE IN */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(25px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+        body {
+            padding: 20px 0;
+        }
+
+        form {
+            padding: 25px;
+        }
+
+        h1 {
+            font-size: 22px;
+        }
+
+        .final-note {
+            font-size: 16px;
+            padding: 20px;
+        }
+    }
+</style>
+
+
+
+</head>
+<body>
+
+    <form>
+        <h1>Title: {{data.title}}</h1>
+
+        <h2>Notes</h2>
+
+        <div class="final-note">{{data.notes |safe}}</div>
+    </form>
+
+</body>
+</html>
